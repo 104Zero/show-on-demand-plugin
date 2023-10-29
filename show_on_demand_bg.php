@@ -11,6 +11,7 @@ $pluginSettings = parse_ini_file($pluginConfigFile);
 #$pluginVersion = urldecode($pluginSettings['pluginVersion']);
 $sodEnabled = $pluginSettings['show_on_demand_enabled'];
 $sodEnabled = $sodEnabled == "true" ? true : false;
+$randomItemEnabled = $randomItemEnabled  == "true" ? true : false;
 
 $api_base_path = "https://voip.ms/api/v1";
 $oldest_message_age = 180;
@@ -22,7 +23,7 @@ $voipmsApiPassword = $pluginSettings['voipms_api_password'];
 $startCommand = $pluginSettings['start_command'];
 $messageSuccess = $pluginSettings['message_success'];
 $messageNotStarted = $pluginSettings['message_not_started'];
-
+	
 if($sodEnabled == 1) {
     echo "Starting Show On Demand Plugin\n";
     logEntry("Starting Show On Demand Plugin");
@@ -53,6 +54,11 @@ if($sodEnabled == 1) {
             throw new Exception('No start command specified.');
         }
 
+        logEntry("Random Item " . $randomItemEnabled);
+        if (randomItemEnabled==0){
+            throw new Exception('Random Item not specified.');
+        }
+	    
         logEntry("Success message: " . $messageSuccess);
         logEntry("Not-started message: " . $messageNotStarted);
 
@@ -117,8 +123,13 @@ if($sodEnabled == 1) {
 function startShow(){
     global $mainPlaylist;
 
-    
-    $url = "http://127.0.0.1/api/command/Insert Playlist Immediate/" . $mainPlaylist ."/0/0/true";
+    if ($randomItemEnabled){
+	$url = "http://127.0.0.1/api/command/Insert Random Item From Playlist/" . $mainPlaylist ."/true";
+    }
+    else{	    
+    	$url = "http://127.0.0.1/api/command/Insert Playlist Immediate/" . $mainPlaylist ."/0/0/true";
+    }
+	
     $url = str_replace(' ', '%20', $url);
 
     logEntry("Triggering main playlist: " . $url);
