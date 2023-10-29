@@ -56,7 +56,7 @@ if($sodEnabled == 1) {
         }
 
         logEntry("Random Item " . $randomItemEnabled);
-        if (randomItemEnabled==0){
+        if ($randomItemEnabled==0){
             throw new Exception('Random Item not specified.');
         }
 	    
