@@ -49,6 +49,11 @@ if (strlen(urldecode($pluginSettings['message_not_started']))<1){
 	$madeChange = true;
 }
 
+if (strlen(urldecode($pluginSettings['random_playlist_item']))<1){
+	WriteSettingToFile("random_playlist_item",urlencode("false"),$pluginName);
+	$madeChange = true;
+}
+
 if ($madeChange) {
 	$pluginSettings = parse_ini_file($pluginConfigFile);
 }
@@ -159,6 +164,15 @@ foreach(scandir($playlistDirectory) as $pFile)
 </td>
 </tr>
 
+<tr>
+	<th style="text-align: left">Select Random Item from Playlist</th>
+<td>
+<?			
+	PrintSettingCheckbox("Randomize Single Playlist Item", "random_playlist_item", $restart = 1, $reboot = 0, "true", "false", $pluginName = $pluginName, $callbackName = "", $defaultValue = 0, $desc = "", $sData = Array());
+?>
+</td>
+</tr>
+	
 </table>
 
 
