@@ -11,6 +11,7 @@ $pluginSettings = parse_ini_file($pluginConfigFile);
 #$pluginVersion = urldecode($pluginSettings['pluginVersion']);
 $sodEnabled = $pluginSettings['show_on_demand_enabled'];
 $sodEnabled = $sodEnabled == "true" ? true : false;
+$randomItemEnabled = $pluginSettings['random_playlist_item'];
 $randomItemEnabled = $randomItemEnabled  == "true" ? true : false;
 
 $api_base_path = "https://voip.ms/api/v1";
@@ -122,8 +123,9 @@ if($sodEnabled == 1) {
 
 function startShow(){
     global $mainPlaylist;
+    global $randomItemEnabled;
 
-    if ($randomItemEnabled){
+    if ($randomItemEnabled == 1){
 	$url = "http://127.0.0.1/api/command/Insert Random Item From Playlist/" . $mainPlaylist ."/true";
     }
     else{	    
