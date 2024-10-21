@@ -11,7 +11,7 @@
 		{
 			"minFPPVersion": "4.0",
 			"maxFPPVersion": "0",
-			"branch": "RandomizeEdits",
+			"branch": "RandomizeEdits8",
 			"sha": "",
 			"dependencies": {
 			    "plugins": [
