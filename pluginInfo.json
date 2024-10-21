@@ -21,6 +21,13 @@
 				"scripts": [
 				]
 			}
-		}
+		},
+		{
+            "minFPPVersion": "8.0",
+            "maxFPPVersion": "0",
+            "branch": "master",
+            "sha": "",
+            "allowUpdates": 1
+        }
 	]
 }
