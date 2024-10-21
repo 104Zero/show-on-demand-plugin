@@ -1,3 +1,5 @@
 #!/bin/sh
 
-/usr/bin/php /home/fpp/media/plugins/show-on-demand-edit/show_on_demand_bg.php &
+/usr/bin/php /home/fpp/media/plugins/show-on-demand-edit/show_on_demand_bg.php 
+
+echo "Running SOD PreStart Script"
